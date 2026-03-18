@@ -69,10 +69,13 @@ function [D1, D2, D3, dd1, current_mm1, dd2, current_mm2] = solve_lyapunov11(a, 
         H1 = inv_su * inv_su';
         m1(i) = max(abs(H1), [], 'all');
         nor_A = max(abs(A_original), [], 'all');
+
+        
+       % Оценка параметра m(A), характеризующего близость к неустойчивости
         H_mu  = m1(i) * r1_val / (2 * nor_A) + sqrt((m1(i) * r1_val)^2 / nor_A^2 + 4 * m1(i));
         mm(i) = 1 / H_mu;
 
-        % Логика отслеживания зон
+        % --- Алгоритм идентификации зон спектральной неустойчивости ---
         current_mm = mm(i); 
         if current_mm > 1e-12
             jump = h; 
