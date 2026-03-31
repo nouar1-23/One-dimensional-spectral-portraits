@@ -35,7 +35,7 @@ function [D1, D2, D3, dd1, current_mm1, dd2, current_mm2] = solve_lyapunov11(a, 
         d_count = 0;
         
         % Внутренний цикл уточнения проектора
-        while (max(abs(p_mat * p_mat - p_mat), [], 'all') > ip * max(abs(p_mat), [], 'all') && d_count <= m0)
+        while (max(abs(p_mat * p_mat - p_mat), [], 'all') > ip && d_count <= m0)
             d_count = d_count + 1;
             for i1 = 1:3
                 S_temp = [-1 * B0; A0];
